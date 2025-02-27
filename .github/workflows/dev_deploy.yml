@@ -28,18 +28,29 @@ jobs:
       - name: Build Vue App
         run: npm run build
 
-      # 5. 빌드 결과물을 EC2 서버로 전송 (appleboy/scp-action 사용)
+      # 5. 배포 전, EC2의 대상 디렉토리 기존 내용 삭제
+      - name: Clear target directory on EC2
+        uses: appleboy/ssh-action@v0.1.8
+        with:
+          host: ${{ secrets.EC2_HOST }}
+          username: ${{ secrets.EC2_USER }}
+          key: ${{ secrets.SSH_KEY }}
+          port: 22
+          script: |
+            sudo rm -rf /var/www/vue-app/*
+
+      # 6. 빌드 결과물(파일들)만 EC2 서버로 전송 (appleboy/scp-action 사용)
       - name: Deploy Vue App via SCP
         uses: appleboy/scp-action@v0.1.4
         with:
-          host: ${{ secrets.EC2_HOST }}       # EC2 IP 또는 도메인
-          username: ${{ secrets.EC2_USER }}     # EC2 접속 사용자 (예: ubuntu, ec2-user 등)
-          key: ${{ secrets.SSH_KEY }}           # GitHub Secrets에 저장된 SSH 개인 키
+          host: ${{ secrets.EC2_HOST }}
+          username: ${{ secrets.EC2_USER }}
+          key: ${{ secrets.SSH_KEY }}
           port: 22
-          source: "dist/"                      # 빌드 결과물 경로 (디렉토리 전체)
-          target: "/var/www/vue-app/"           # EC2 배포 대상 경로
+          source: "dist/*"       # dist 폴더 안의 내용물만 복사
+          target: "/var/www/vue-app/"
 
-      # 6. 원격 서버에서 추가 작업 실행 (예: 권한 변경, Nginx 재시작 등)
+      # 7. 원격 서버에서 추가 작업 실행 (예: 권한 변경, Nginx 재시작 등)
       - name: Post Deployment - Set Permissions and Restart Nginx
         uses: appleboy/ssh-action@v0.1.8
         with:
