@@ -3,7 +3,7 @@ name: Deploy Vue App to EC2
 on:
   push:
     branches:
-      - main   # 또는 develop 등 원하는 브랜치 지정
+      - develop
 
 jobs:
   build-and-deploy:
