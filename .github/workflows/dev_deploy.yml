@@ -14,7 +14,7 @@ jobs:
       - name: Checkout Code
         uses: actions/checkout@v3
 
-      # 2. Node.js 환경 설정 (필요한 Node 버전을 지정)
+      # 2. Node.js 환경 설정
       - name: Setup Node.js
         uses: actions/setup-node@v3
         with:
@@ -47,7 +47,7 @@ jobs:
           username: ${{ secrets.EC2_USER }}
           key: ${{ secrets.SSH_KEY }}
           port: 22
-          source: "dist/*"       # dist 폴더 안의 내용물만 복사
+          source: "dist/."        # dist 폴더 내부의 내용물을 복사
           target: "/var/www/vue-app/"
 
       # 7. 원격 서버에서 추가 작업 실행 (예: 권한 변경, Nginx 재시작 등)
