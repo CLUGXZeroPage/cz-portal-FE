@@ -1,0 +1,42 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+:root {
+    --gradient: linear-gradient(45deg, #ff2e63, #ff6b81, #ffb562, #e0a04a);
+    --glass-bg: rgba(255, 255, 255, 0.05);
+    --border: 1px solid rgba(255, 255, 255, 0.1);
+    --shadow: 0 8px 32px 0 rgba(200, 50, 50, 0.37);
+}
+
+body {
+    background: #0a0a0a;
+    min-height: 100vh;
+}
+
+.title {
+    font-size: 5.5vw;
+    font-weight: 800;
+    margin-bottom: 2rem;
+    background: var(--gradient);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    animation: gradient 8s linear infinite;
+    background-size: 300%;
+    line-height: 1.1;
+    text-transform: uppercase;
+    letter-spacing: -2px;
+}
+
+.description {
+    font-size: 2rem;
+    max-width: 800px;
+    margin: 0 auto;
+    line-height: 1.6;
+    opacity: 0.8;
+    color: white;
+}
