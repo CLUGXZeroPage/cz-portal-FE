@@ -14,7 +14,7 @@ jobs:
       - name: Checkout Code
         uses: actions/checkout@v3
 
-      # 2. Node.js 환경 설정
+      # 2. Node.js 환경 설정 (Node 18 사용)
       - name: Setup Node.js
         uses: actions/setup-node@v3
         with:
@@ -39,7 +39,7 @@ jobs:
           script: |
             sudo rm -rf /var/www/vue-app/*
 
-      # 6. 빌드 결과물(파일들)만 EC2 서버로 전송 (appleboy/scp-action 사용)
+      # 6. 빌드 결과물(파일들)만 EC2 서버로 전송 (dist 폴더 내부 내용)
       - name: Deploy Vue App via SCP
         uses: appleboy/scp-action@v0.1.4
         with:
@@ -47,10 +47,24 @@ jobs:
           username: ${{ secrets.EC2_USER }}
           key: ${{ secrets.SSH_KEY }}
           port: 22
-          source: "dist/."        # dist 폴더 내부의 내용물을 복사
+          source: "dist/."        # dist 폴더 내부의 모든 파일과 폴더
           target: "/var/www/vue-app/"
 
-      # 7. 원격 서버에서 추가 작업 실행 (예: 권한 변경, Nginx 재시작 등)
+      # 7. 만약 dist 폴더가 그대로 복사되었다면 정리하는 단계
+      - name: Fix directory structure on EC2
+        uses: appleboy/ssh-action@v0.1.8
+        with:
+          host: ${{ secrets.EC2_HOST }}
+          username: ${{ secrets.EC2_USER }}
+          key: ${{ secrets.SSH_KEY }}
+          port: 22
+          script: |
+            if [ -d /var/www/vue-app/dist ]; then
+              sudo mv /var/www/vue-app/dist/* /var/www/vue-app/;
+              sudo rm -rf /var/www/vue-app/dist;
+            fi
+
+      # 8. 원격 서버에서 권한 변경 및 Nginx 재시작
       - name: Post Deployment - Set Permissions and Restart Nginx
         uses: appleboy/ssh-action@v0.1.8
         with:
