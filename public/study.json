@@ -9,7 +9,58 @@
         "greeting": "같이 공부해요!",
         "leader": "이준형",
         "contact" : "이준형에게 문의 부탁드립니다."
+      },
+      {
+        "id": 2,
+        "name": "새싹 교실 2분반 🌱",
+        "currentMembers": 0,
+        "totalMembers": 4,
+        "applicationCriteria": "python을 배우고 싶은 새싹들",
+        "greeting": "저도 같이 공부할래요~",
+        "leader": "백범준",
+        "contact" : "백범준에게 문의 부탁드립니다."
+      },
+      {
+        "id": 3,
+        "name": "새싹 교실 2분반 🌱",
+        "currentMembers": 0,
+        "totalMembers": 4,
+        "applicationCriteria": "python을 배우고 싶은 새싹들",
+        "greeting": "저도 같이 공부할래요~",
+        "leader": "백범준",
+        "contact" : "백범준에게 문의 부탁드립니다."
+      },
+      {
+        "id": 4,
+        "name": "새싹 교실 2분반 🌱",
+        "currentMembers": 0,
+        "totalMembers": 4,
+        "applicationCriteria": "python을 배우고 싶은 새싹들",
+        "greeting": "저도 같이 공부할래요~",
+        "leader": "백범준",
+        "contact" : "백범준에게 문의 부탁드립니다."
+      },
+      {
+        "id": 5,
+        "name": "새싹 교실 2분반 🌱",
+        "currentMembers": 0,
+        "totalMembers": 4,
+        "applicationCriteria": "python을 배우고 싶은 새싹들",
+        "greeting": "저도 같이 공부할래요~",
+        "leader": "백범준",
+        "contact" : "백범준에게 문의 부탁드립니다."
+      },
+      {
+        "id": 6,
+        "name": "새싹 교실 2분반 🌱",
+        "currentMembers": 0,
+        "totalMembers": 4,
+        "applicationCriteria": "python을 배우고 싶은 새싹들",
+        "greeting": "저도 같이 공부할래요~",
+        "leader": "백범준",
+        "contact" : "백범준에게 문의 부탁드립니다."
       }
+
     ]
   }
   

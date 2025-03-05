@@ -76,12 +76,10 @@ export default {
   padding: 40px 20px;
   font-family: 'Poppins', 'Noto Sans KR', sans-serif;
   color: white;
-  background-color: #121212;
 }
 
 .title {
-  font-size: 2.5rem;
-  margin-bottom: 30px;
+  margin-bottom: 50px;
 }
 
 .study-grid {
