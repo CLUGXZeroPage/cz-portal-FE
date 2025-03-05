@@ -1,0 +1,15 @@
+{
+    "studies": [
+      {
+        "id": 1,
+        "name": "새싹 교실 1분반 🌱",
+        "currentMembers": 0,
+        "totalMembers": 4,
+        "applicationCriteria": "C언어를 배우고 싶은 새싹들",
+        "greeting": "같이 공부해요!",
+        "leader": "이준형",
+        "contact" : "이준형에게 문의 부탁드립니다."
+      }
+    ]
+  }
+  

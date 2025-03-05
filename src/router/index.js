@@ -9,6 +9,7 @@ import Clug from '@/pages/Clug.vue';
 import Sign from '@/pages/SignEvent.vue';
 import Ranking from '@/pages/Ranking.vue';
 import CurrentRanking from '@/pages/CurrentRanking.vue';
+import Study from '@/pages/Study.vue'
 
 const routes = [
     { path: '/', component: Home },
@@ -21,6 +22,7 @@ const routes = [
     { path: '/sign', component: Sign },
     { path: '/rank', component: Ranking},
     { path: '/current-rank', component:CurrentRanking},
+    { path: '/study', component:Study}
 ];
 
 const router = createRouter({
