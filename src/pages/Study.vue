@@ -22,7 +22,7 @@
             스터디 소개: "{{ study.greeting }}"
           </p>
           <p class="mentor">
-            스터디장: <span class="highlight">{{ study.mentor }}</span>
+            스터디장: <span class="highlight">{{ study.leader }}</span>
           </p>
           <p class="contact">
             가입 방법: <span class="contact">{{ study.contact }}</span>
