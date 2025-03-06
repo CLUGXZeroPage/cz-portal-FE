@@ -2,6 +2,7 @@ import { createRouter, createWebHistory } from 'vue-router';
 import Home from '@/pages/Home.vue';
 import About from '@/pages/About.vue';
 import BaekjoonKing from '@/pages/BaekjoonKing.vue';
+import BaekjoonKingWait from '@/pages/BaekjoonKingWaiting.vue';
 import Notice from '@/pages/Notice.vue';
 import Articles from '@/pages/Articles.vue';
 import ZeroPage from '@/pages/ZeroPage.vue';
@@ -21,6 +22,7 @@ const routes = [
     { path: '/sign', component: Sign },
     { path: '/rank', component: Ranking},
     { path: '/current-rank', component:CurrentRanking},
+    { path: '/baekjoonking-wait', component:BaekjoonKingWait},
 ];
 
 const router = createRouter({
