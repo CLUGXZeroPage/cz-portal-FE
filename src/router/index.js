@@ -23,7 +23,7 @@ const routes = [
     { path: '/sign', component: Sign },
     { path: '/rank', component: Ranking},
     { path: '/current-rank', component:CurrentRanking},
-    { path: '/study', component:Study}
+    { path: '/study', component:Study},
     { path: '/baekjoonking-wait', component:BaekjoonKingWait},
 ];
 
