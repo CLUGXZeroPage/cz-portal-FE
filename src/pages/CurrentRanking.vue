@@ -17,11 +17,11 @@
             <!-- 닉네임으로 표시 -->
             <span class="username">{{ user.nickname }}</span>
             <!-- ratingDiff 값 표시 -->
-            <span class="score">{{ user.ratingDiff }}</span>
+            <span class="score">{{ user.solvedCountDiff }}</span>
           </div>
           <div class="progress-bar">
             <!-- 숫자형으로 변환 후 최대값과 비교하여 프로그레스바 계산 -->
-            <div class="progress-fill" :style="{ width: (Number(user.ratingDiff) / maxRatingDiff * 100) + '%' }"></div>
+            <div class="progress-fill" :style="{ width: (Number(user.solvedCountDiff) / maxRatingDiff * 100) + '%' }"></div>
           </div>
         </div>
       </div>
@@ -47,10 +47,10 @@ export default {
         if (data.isSuccess && data.result) {
           // ratingDiff는 문자열이므로 숫자로 변환하여 내림차순 정렬
           users.value = data.result.sort(
-            (a, b) => Number(b.ratingDiff) - Number(a.ratingDiff)
-          );
+            (a, b) => Number(b.solvedCountDiff) - Number(a.solvedCountDiff)
+          ); //solvedCountDiff 문제 개수
           // 최대 ratingDiff 값을 추출 (첫번째 요소가 가장 큰 값)
-          maxRatingDiff.value = Number(users.value[0].ratingDiff);
+          maxRatingDiff.value = Number(users.value[0].solvedCountDiff);
         }
       } catch (error) {
         console.error("Error fetching data:", error);
