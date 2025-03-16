@@ -8,7 +8,7 @@
       <p v-if="show" class="subtitle">
         <br /><br /><br /><br />이번 주 시상 종목 : <span class="highlight">[Rating 상승 폭]</span> <br /><br />
         <span class="highlight2">...This Week's KING is...</span> <br /><br />
-        다음 회차 시작일 : <span class="highlight">3/10 (월)</span>
+        다음 회차 시작일 : <span class="highlight">3/17 (월)</span>
       </p>
     </transition>
 
