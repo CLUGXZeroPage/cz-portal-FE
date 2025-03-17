@@ -7,7 +7,7 @@
         <li><router-link to="/about">About</router-link></li>
         <li><router-link to="/baekjoonking">BaekjoonKing</router-link></li>
         <li><router-link to="/notice">Notice</router-link></li>
-        <li><router-link to="/articles">Articles</router-link></li>
+        <li><router-link to="/oms_week">OMS</router-link></li>
         <li><router-link to="/study">Study</router-link></li>
       </ul>
     </div>
