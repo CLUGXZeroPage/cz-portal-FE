@@ -86,7 +86,6 @@ export default {
 }
 
 .oms-title {
-  font-size: 4.5vw;
   font-weight: 700;
   color: white;
   padding: 10px 20px;
@@ -95,6 +94,10 @@ export default {
   border-radius: 15px;
   display: inline-block;
   letter-spacing: 1px;
+  max-width: 90vw; /* 뷰포트 너비 대비 최대 크기 */
+  width: fit-content; /* 내용에 맞게 조정 */
+  white-space: nowrap;
+  font-size: clamp(1.5rem, 4.5vw, 4.5rem);
 }
 
 .description {
