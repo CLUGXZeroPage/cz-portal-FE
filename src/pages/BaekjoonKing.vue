@@ -6,7 +6,7 @@
 
     <transition name="fade-content">
       <p v-if="show" class="subtitle">
-        이번 주 시상 종목 : <span class="highlight">[Rating 상승 폭]</span> <br /><br />
+        이번 주 시상 종목 : <span class="highlight">[가장 많은 문제 해결]</span> <br /><br />
         <span class="highlight">Current Top 4</span>
       </p>
     </transition>
@@ -68,7 +68,7 @@ export default {
     // ratingDiff 기준 내림차순 정렬 (숫자로 변환)
     const sortedRankings = computed(() => {
       return rankingData.value.slice().sort((a, b) => {
-        return Number(b.ratingDiff) - Number(a.ratingDiff);
+        return Number(b.solvedCountDiff) - Number(a.solvedCountDiff);
       });
     });
 
