@@ -8,10 +8,13 @@
 
     <transition name="fade-content">
       <div v-if="show" class="oms-list">
+        <!-- 각 OMS 항목 -->
         <div
             v-for="oms in omss"
             :key="oms.id"
-            class="oms-item">
+            class="oms-item"
+            @click="goToDetail(oms.id)"
+        >
           <div class="oms-info">
             <h3 class="oms-title">{{ oms.title }}</h3>
             <p class="oms-subtitle">{{ oms.subtitle }}</p>
@@ -22,9 +25,8 @@
           </div>
         </div>
 
-        <div
-            class="oms-item archive-link"
-            @click="goToArchive">
+        <!-- 작년 자료 링크 -->
+        <div class="oms-item archive-link" @click="goToArchive">
           <div class="oms-info">
             <h3 class="oms-title">작년 OMS 모음</h3>
           </div>
@@ -36,39 +38,42 @@
 
 <script>
 import { ref, onMounted } from "vue";
+import { useRouter } from "vue-router";
 
 export default {
   name: "OMSS",
   setup() {
     const show = ref(false);
-    onMounted(() => {
-      show.value = true;
-    });
-    return {show};
-  },
-  data() {
-    return {
-      omss: []
-    };
-  },
-  async created() {
-    await this.loadOMSS();
-  },
-  methods: {
-    async loadOMSS() {
+    const router = useRouter();
+    const omss = ref([]);
+
+    const loadOMSS = async () => {
       try {
-        const response = await fetch('/omss.json'); // JSON 데이터 불러오기
-        this.omss = await response.json();
+        const response = await fetch('/omss.json');
+        omss.value = await response.json();
       } catch (error) {
         console.error('Failed to load OMS data:', error);
       }
-    },
-    goToArchive() {
+    };
+
+    const goToDetail = (id) => {
+      router.push(`/oms/${id}`);
+    };
+
+    const goToArchive = () => {
       window.location.href = "https://portal.zeropage.org/oms";
-    }
-  }
+    };
+
+    onMounted(async () => {
+      await loadOMSS();
+      show.value = true;
+    });
+
+    return {show, omss, goToDetail, goToArchive};
+  },
 };
 </script>
+
 
 <style scoped>
 .oms-container {

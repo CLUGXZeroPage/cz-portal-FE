@@ -10,8 +10,9 @@ import Clug from '@/pages/Clug.vue';
 import Sign from '@/pages/SignEvent.vue';
 import Ranking from '@/pages/Ranking.vue';
 import CurrentRanking from '@/pages/CurrentRanking.vue';
-import Study from '@/pages/Study.vue'
-import Omss from '@/pages/omss.vue'
+import Study from '@/pages/Study.vue';
+import Omss from '@/pages/omss.vue';
+import OmsDetail from '@/pages/omsDetail.vue';
 
 const routes = [
     { path: '/', component: Home },
@@ -26,7 +27,8 @@ const routes = [
     { path: '/current-rank', component:CurrentRanking},
     { path: '/study', component:Study},
     { path: '/baekjoonking-wait', component:BaekjoonKingWait},
-    { path: '/omss', component:Omss}
+    { path: '/omss', component:Omss},
+    { path: '/oms/:id', component:OmsDetail}
 ];
 
 const router = createRouter({
