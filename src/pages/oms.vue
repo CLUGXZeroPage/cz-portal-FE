@@ -35,9 +35,9 @@ export default {
     const show = ref(false);
 
     // 새로운 OMS title 추가
-    const omsTitle = ref("마인크래프트를 했더니 친구가 생겼습니다");
-    const description = ref("마인크래프트로 알아보는 소프트웨어 지식");
-    const presenter = ref("이준형");
+    const omsTitle = ref("디버깅에서 인생을 배웠습니다…");
+    const description = ref("정답 없는 인생, 그 해답없는 회고");
+    const presenter = ref("백범준");
 
     onMounted(() => {
       show.value = true;
