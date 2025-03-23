@@ -69,30 +69,26 @@ export default {
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&family=Noto+Sans+KR:wght@400;700&display=swap');
 
 .study-container {
-  margin-top: 80px; /* 네비게이션 바 높이에 맞춰 상단 여백 추가 */
+  margin-top: clamp(60px, 10vh, 100px);
   display: flex;
   flex-direction: column;
   align-items: center;
-  padding: 40px 20px;
+  padding: clamp(20px, 5vw, 40px) clamp(16px, 5vw, 32px);
   font-family: 'Poppins', 'Noto Sans KR', sans-serif;
   color: white;
-}
-
-.title {
-  margin-bottom: 50px;
 }
 
 .study-grid {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
-  gap: 20px;
+  gap: clamp(16px, 3vw, 24px);
   width: 100%;
   max-width: 1200px;
 }
 
 .study-card {
   background: rgba(255, 255, 255, 0.1);
-  padding: 20px;
+  padding: clamp(16px, 4vw, 24px);
   border-radius: 12px;
   box-shadow: 0 4px 15px rgba(255, 255, 255, 0.1);
   transition: transform 0.3s ease;
@@ -103,8 +99,9 @@ export default {
 }
 
 .study-name {
-  font-size: 1.8rem;
-  margin-bottom: 10px;
+  font-size: clamp(1.2rem, 3vw, 1.8rem);
+  margin-bottom: clamp(8px, 1vh, 12px);
+  font-weight: bold;
 }
 
 .capacity,
@@ -112,8 +109,8 @@ export default {
 .greeting,
 .contact,
 .mentor {
-  font-size: 1.1rem;
-  margin: 8px 0;
+  font-size: clamp(0.9rem, 2.2vw, 1.1rem);
+  margin: clamp(6px, 1vh, 10px) 0;
 }
 
 .highlight {
@@ -121,7 +118,13 @@ export default {
   font-weight: 700;
 }
 
-/* Transitions */
+/* 반응형: 화면이 768px 이하일 때 한 열로 변경 */
+@media (max-width: 768px) {
+  .study-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
 .fade-title-enter-active {
   transition: opacity 1s ease, transform 0.8s ease;
 }
@@ -137,4 +140,5 @@ export default {
   opacity: 0;
   transform: translateY(10px);
 }
+
 </style>

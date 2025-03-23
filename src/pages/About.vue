@@ -10,24 +10,16 @@
     <transition name="fade-content">
       <div v-if="show">
         <p class="description">
-          select club you want to learn more about to get started.
+          select club you want to learn more
         </p>
       </div>
     </transition>
 
     <transition name="fade-content">
-      <div v-if="show">
-        <div class="selection-container">
-          <button @click="selectClub('CLUG')" :class="{ active: selectedClub === 'CLUG' }">CLUG</button>
-          <button @click="selectClub('ZeroPage')" :class="{ active: selectedClub === 'ZeroPage' }">ZeroPage</button>
-        </div>
+      <div v-if="show" class="selection-container">
+        <router-link to="/clug" class="btn">CLUG</router-link>
+        <router-link to="/zeropage" class="btn">ZeroPage</router-link>
       </div>
-    </transition>
-
-    <transition name="fade-opacity">
-      <button v-if="selectedClub" class="next-button fade-in" @click="goToClubPage">
-        ?
-      </button>
     </transition>
   </div>
 </template>
@@ -40,31 +32,26 @@ export default {
   name: "About",
   setup() {
     const show = ref(false);
-    const selectedClub = ref(null);
-    const router = useRouter();
 
     onMounted(() => {
       show.value = true;
-    });
-
-    const selectClub = (club) => {
-      selectedClub.value = club;
-    };
-
-    const goToClubPage = () => {
-      if (selectedClub.value === "CLUG") {
-        router.push("/clug");
-      } else if (selectedClub.value === "ZeroPage") {
-        router.push("/zeropage");
-      }
-    };
-
-    return { show, selectedClub, selectClub, goToClubPage };
+    })
+    return { show };
   },
 };
 </script>
 
 <style scoped>
+
+.description {
+  font-size: clamp(1.2rem, 2.5vw, 2rem);
+  max-width: 800px;
+  margin: 0 auto;
+  line-height: 1.6;
+  opacity: 0.8;
+  color: white;
+}
+
 .about-container {
   min-height: 100vh;
   display: flex;
@@ -80,40 +67,31 @@ export default {
 
 .selection-container {
   display: flex;
-  gap: 20px;
-  margin-top: 20px;
+  justify-content: center;
+  gap: clamp(15px, 5vw, 20px);
+  margin-top: clamp(20px, 5vh, 40px);
 }
 
-.selection-container button {
-  padding: 10px 20px;
-  font-size: 1.2rem;
-  cursor: pointer;
-  border: none;
-  background: #444;
+.btn {
+  width: clamp(70px, 20vw, 125px);
+  height: clamp(20px, 6vh, 35px);
+  font-size: clamp(1rem, 2.5vw, 1.2rem);
   color: white;
-  border-radius: 8px;
-  transition: 0.3s;
-}
-
-.selection-container button.active {
-  background:  #FFA559;
-  color: black;
-}
-
-.next-button {
-  position: absolute;
-  bottom: 50px;
-  padding: 10px 20px;
-  font-size: 1.5rem;
-  cursor: pointer;
+  text-decoration: none;
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(255, 255, 255, 0.2);
+  box-shadow: 0 4px 15px rgba(255, 255, 255, 0.1);
+  transition: all 0.3s ease-in-out;
   border: none;
-  background:  #FFA559;
-  color: black;
-  border-radius: 8px;
+  cursor: pointer;
 }
 
-.next-button:hover {
-  background: #FFA559;
+.btn:hover {
+  background: rgba(255, 255, 255, 0.4);
+  box-shadow: 0 6px 20px rgba(255, 255, 255, 0.2);
 }
 
 .fade-title-enter-active {
@@ -128,14 +106,6 @@ export default {
   transition: opacity 1s ease 0.5s, transform 0.8s ease 0.5s;
 }
 .fade-content-enter-from {
-  opacity: 0;
-  transform: translateY(10px);
-}
-
-.fade-opacity-enter-active {
-  transition: opacity 1s ease, transform 0.8s ease;
-}
-.fade-opacity-enter-from {
   opacity: 0;
   transform: translateY(10px);
 }

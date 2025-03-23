@@ -52,7 +52,6 @@ export default {
 .fade-title-enter-active {
   transition: opacity 1s ease, transform 0.8s ease;
 }
-
 .fade-title-enter-from {
   opacity: 0;
   transform: translateY(10px);
@@ -61,7 +60,6 @@ export default {
 .fade-content-enter-active {
   transition: opacity 1s ease 0.5s, transform 0.8s ease 0.5s;
 }
-
 .fade-content-enter-from {
   opacity: 0;
   transform: translateY(10px);
@@ -76,6 +74,7 @@ export default {
   position: relative;
   overflow: hidden;
   text-align: center;
+  padding: clamp(20px, 5vh, 60px) clamp(10px, 5vw, 40px);
 }
 
 .content {
@@ -88,43 +87,43 @@ export default {
 .oms-title {
   font-weight: 700;
   color: white;
-  padding: 10px 20px;
+  padding: clamp(8px, 1vw, 10px) clamp(16px, 2vw, 20px);
   background: var(--glass-bg);
   border: var(--border);
   border-radius: 15px;
   display: inline-block;
   letter-spacing: 1px;
-  max-width: 90vw; /* 뷰포트 너비 대비 최대 크기 */
-  width: fit-content; /* 내용에 맞게 조정 */
+  max-width: 90vw;
+  width: fit-content;
   white-space: nowrap;
-  font-size: clamp(1.5rem, 4.5vw, 4.5rem);
+  font-size: clamp(1.2rem, 4.5vw, 4.5rem);
 }
 
 .description {
-  font-size: 1.5rem;
-  margin-top: 10px;
+  font-size: clamp(1rem, 2.2vw, 1.5rem);
+  margin-top: clamp(8px, 1vh, 12px);
   color: rgba(255, 255, 255, 0.8);
 }
 
 .presenter {
-  font-size: 1.2rem;
-  margin-top: 5px;
+  font-size: clamp(0.9rem, 1.8vw, 1.2rem);
+  margin-top: clamp(4px, 0.8vh, 8px);
   color: rgba(255, 255, 255, 0.6);
 }
 
 .footer {
   position: absolute;
-  bottom: 20px;
+  bottom: clamp(16px, 3vh, 30px);
   width: 100%;
   display: flex;
   justify-content: center;
-  gap: 40px;
+  gap: clamp(20px, 5vw, 40px);
 }
 
 .btn {
-  width: 150px;
-  height: 50px;
-  font-size: 1.2rem;
+  width: clamp(120px, 18vw, 150px);
+  height: clamp(40px, 6vh, 50px);
+  font-size: clamp(1rem, 2vw, 1.2rem);
   font-weight: bold;
   color: white;
   text-decoration: none;

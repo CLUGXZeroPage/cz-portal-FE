@@ -60,17 +60,18 @@ onMounted(async () => {
 <style scoped>
 .oms-detail-container {
   max-width: 1000px;
-  margin: 120px auto 0;
-  padding: 0 20px 40px;
+  margin: clamp(100px, 10vh, 120px) auto 0;
+  padding: 0 clamp(16px, 4vw, 40px) clamp(40px, 6vh, 60px);
   color: #fff;
 }
 
+/* 제목 영역 */
 .pdf-title-container {
-  margin-bottom: 10px;
+  margin-bottom: clamp(4px, 1.5vh, 16px);
 }
 
 .pdf-title {
-  font-size: 2rem;
+  font-size: clamp(1.5rem, 4vw, 2.5rem);
   font-weight: bold;
   margin: 0;
 }
@@ -79,23 +80,31 @@ onMounted(async () => {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin-bottom: 20px;
-  padding: 0 5px;
+  margin-bottom: clamp(4px, 1.5vh, 16px);
+  padding: 0 clamp(4px, 1vw, 10px);
 }
 
 .pdf-presenter,
 .pdf-date {
-  font-size: 1rem;
+  font-size: clamp(0.9rem, 2vw, 1.1rem);
   color: rgba(255, 255, 255, 0.7);
 }
 
+.pdf-viewer {
+  border: 2px solid rgba(255, 255, 255, 0.3);
+  border-radius: 15px;
+  overflow: hidden;
+}
+
+/* PDF가 없는 경우 */
 .no-pdf {
-  margin-top: 30px;
-  padding: 40px;
+  margin-top: clamp(20px, 4vh, 30px);
+  padding: clamp(20px, 4vw, 40px);
   text-align: center;
   background: rgba(255, 255, 255, 0.1);
   border-radius: 15px;
-  font-size: 1.2rem;
+  font-size: clamp(1rem, 2vw, 1.2rem);
   color: rgba(255, 255, 255, 0.8);
 }
 </style>
+

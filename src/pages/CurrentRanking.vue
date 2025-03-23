@@ -85,12 +85,11 @@ export default {
 }
 
 .title {
-  margin-top: 60px;
-  letter-spacing: 1px;
+  margin-top: clamp(2rem, 6vh, 4rem);
 }
 
 .subtitle {
-  font-size: 1.2rem;
+  font-size: clamp(1rem, 3.5vw, 1.4rem);
   opacity: 0.8;
   margin-bottom: 40px;
 }
@@ -103,7 +102,7 @@ export default {
   width: 80%;
   max-height: 60vh;
   overflow-y: auto;
-  padding-right: 10px;
+  padding-right: clamp(6px, 2vw, 10px);
   border-top: 2px solid rgba(255, 255, 255, 0.2);
   padding-top: 10px;
   position: relative;
@@ -130,13 +129,13 @@ export default {
 .ranking-item {
   width: 100%;
   background: #252525;
-  padding: 16px 24px;
+  padding: clamp(12px, 3vw, 20px) clamp(16px, 5vw, 24px);
   border-radius: 12px;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  font-size: 1.1rem;
+  font-size: clamp(0.9rem, 2.8vw, 1.1rem);
   color: #eee;
   font-weight: 400;
 }
@@ -146,7 +145,7 @@ export default {
   justify-content: space-between;
   width: 100%;
   margin-bottom: 8px;
-  font-size: 1rem;
+  font-size: clamp(0.85rem, 2.5vw, 1rem);
 }
 
 .rank {

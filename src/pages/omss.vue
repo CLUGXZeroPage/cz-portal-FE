@@ -81,26 +81,27 @@ export default {
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  height: 100vh;
+  min-height: 100vh;
   overflow: hidden;
   color: white;
   text-align: center;
   position: relative;
-  padding-bottom: 80px;
+  padding-bottom: clamp(40px, 8vh, 80px);
+  padding-top: clamp(40px, 8vh, 80px);
 }
 
 .title {
-  margin-top: 100px;
-  margin-bottom: 30px;
+  margin-top: clamp(60px, 8vh, 100px);
+  margin-bottom: clamp(20px, 4vh, 30px);
 }
 
 .oms-list {
-  width: 80%;
+  width: 90%;
   height: 60vh;
   overflow-y: auto;
-  padding: 20px;
+  padding: clamp(16px, 3vw, 20px);
   background: rgba(255, 255, 255, 0.1);
-  border-radius: 10px;
+  border-radius: clamp(8px, 1vw, 10px);
   box-shadow: 0 8px 32px rgba(255, 255, 255, 0.1);
 }
 
@@ -108,10 +109,10 @@ export default {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 15px;
-  margin-bottom: 10px;
+  padding: clamp(10px, 2vw, 15px);
+  margin-bottom: clamp(8px, 1.5vw, 12px);
   background: rgba(255, 255, 255, 0.2);
-  border-radius: 8px;
+  border-radius: clamp(6px, 1vw, 8px);
   cursor: pointer;
   transition: all 0.3s ease-in-out;
 }
@@ -125,12 +126,12 @@ export default {
 }
 
 .oms-title {
-  font-size: 1rem;
+  font-size: clamp(0.8rem, 2.5vw, 1.1rem);
   font-weight: bold;
 }
 
 .oms-subtitle {
-  font-size: 0.9rem;
+  font-size: clamp(0.65rem, 2vw, 0.95rem);
   opacity: 0.8;
 }
 
@@ -138,20 +139,16 @@ export default {
   text-align: right;
 }
 
-.oms-date {
-  font-size: 0.8rem;
-  opacity: 0.7;
-}
-
+.oms-date,
 .oms-presenter {
-  font-size: 0.8rem;
+  font-size: clamp(0.55rem, 1.5vw, 0.85rem);
   font-weight: bold;
 }
 
 .archive-link {
   background: rgba(229, 115, 115, 0.3);
   text-align: center;
-  font-size: 1rem;
+  font-size: clamp(0.9rem, 2vw, 1rem);
   font-weight: bold;
   color: white;
 }
@@ -160,12 +157,32 @@ export default {
   background: rgba(229, 115, 115, 0.5);
 }
 
-.fade-title-enter-active, .fade-content-enter-active {
+.fade-title-enter-active,
+.fade-content-enter-active {
   transition: opacity 1s ease, transform 0.8s ease;
 }
 
-.fade-title-enter-from, .fade-content-enter-from {
+.fade-title-enter-from,
+.fade-content-enter-from {
   opacity: 0;
   transform: translateY(10px);
 }
+
+.oms-list::-webkit-scrollbar {
+  width: clamp(6px, 0.6vw, 8px);
+}
+
+.oms-list::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.oms-list::-webkit-scrollbar-thumb {
+  background: rgba(255, 255, 255, 0.3);
+  border-radius: 4px;
+}
+
+.oms-list::-webkit-scrollbar-thumb:hover {
+  background: rgba(255, 255, 255, 0.5);
+}
 </style>
+

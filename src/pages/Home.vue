@@ -1,50 +1,50 @@
 <template>
   <div class="home-container">
-    <div class = "content">
+    <div class="content">
       <transition name="fade-title">
-        <h1 v-if="show" class="title">Together, we get better</h1>
+        <h1 v-if="show" class="title">{{ displayTitle }}</h1>
       </transition>
       <transition name="fade-content">
-        <p v-if="show" class="description">Welcome to the new era of CLUG X ZeroPage</p>
+        <p v-if="show" class="description">{{ displayDescription }}</p>
       </transition>
     </div>
-    <transition name="fade-content">
-      <footer v-if="show" class="footer">
-        <div class="footer-left"></div>
-        <div class="footer-right">Developed by BeomJun Baek</div>
-      </footer>
-    </transition>
   </div>
 </template>
+
 <script>
-import { ref, onMounted } from "vue";
+import {ref, onMounted, computed} from "vue";
 
 export default {
   name: "Home",
   setup() {
     const show = ref(false);
+    const isSmallScreen = computed(() => window.innerWidth <= 480);
+    const displayTitle = computed(() => (isSmallScreen.value ? "CLUG X ZeroPage" : "Together, we get better"));
+    const displayDescription = computed(() => (isSmallScreen.value ? "Welcome!" : "Welcome to the new era of CLUG X ZeroPage"));
 
     onMounted(() => {
       show.value = true; // 페이지가 로드되면 애니메이션 실행
     });
 
-    return { show };
+    return {show, displayTitle, displayDescription};
   },
 };
 </script>
 
 <style scoped>
 .fade-title-enter-active {
-  transition: opacity 1s ease, transform 0.8s ease;
+  transition: opacity 0.8s ease, transform 0.6s ease;
 }
+
 .fade-title-enter-from {
   opacity: 0;
   transform: translateY(10px);
 }
 
 .fade-content-enter-active {
-  transition: opacity 1s ease 0.5s, transform 0.8s ease 0.5s;
+  transition: opacity 0.8s ease 0.3s, transform 0.6s ease 0.3s;
 }
+
 .fade-content-enter-from {
   opacity: 0;
   transform: translateY(10px);
@@ -55,8 +55,8 @@ export default {
   display: flex;
   justify-content: center;
   align-items: center;
-  position: relative;
   overflow: hidden;
+  padding: 5% 5% 0;
 }
 
 .content {
@@ -67,22 +67,38 @@ export default {
   z-index: 1;
 }
 
-.footer {
-  position: absolute;
-  bottom: 20px;
-  width: 100%;
-  display: flex;
-  justify-content: space-between;
-  padding: 0 40px;
-  font-size: 1rem;
-  color: rgba(255, 255, 255, 0.7); /* 텍스트 색상 투명도 */
+.description {
+  font-size: clamp(1rem, 2.5vw, 2rem);
+  max-width: 800px;
+  margin: 0 auto;
+  line-height: 1.6;
+  opacity: 0.8;
+  color: white;
 }
 
-.footer-left {
-  text-align: left;
+@media (max-width: 1024px) {
+
+  .description {
+    font-size: 1.2rem;
+  }
 }
 
-.footer-right {
-  text-align: right;
+@media (max-width: 768px) {
+  .home-container {
+    padding-top: 10%;
+  }
+}
+
+@media (max-width: 480px) {
+  .title{
+    font-size: 2rem;
+  }
+  .home-container {
+    padding-top: 15%;
+  }
+
+  .description {
+    font-size: 1rem;
+  }
 }
 </style>

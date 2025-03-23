@@ -1,7 +1,10 @@
 <template>
   <div class="ranking-container">
     <transition name="fade-title">
-      <h1 v-if="show" class="title">Baekjoon King</h1>
+      <h1 v-if="show" class="title">
+        <span class="full-title">BAEKJOON KING</span>
+        <span class="short-title">BJKING</span>
+      </h1>
     </transition>
 
     <transition name="fade-content">
@@ -13,15 +16,14 @@
 
     <transition name="fade-content">
       <div v-if="show" class="podium">
-        <!-- podium 순서는: 왼쪽부터 3등, 2등, 1등, 4등 -->
+        <!-- podium 순서: 왼쪽부터 3등, 2등, 1등, 4등 -->
         <div
-          v-for="(user, index) in podiumOrder"
-          :key="user.username"
-          class="rank-container"
+            v-for="(user, index) in podiumOrder"
+            :key="user.username"
+            class="rank-container"
         >
           <div :class="['rank', rankClasses[index]]">
             <div class="rank-box">
-              <!-- index 매핑: 0 -> 3등, 1 -> 2등, 2 -> 1등, 3 -> 4등 -->
               <span class="rank-number">{{ [3, 2, 1, 4][index] }}</span>
             </div>
           </div>
@@ -41,7 +43,7 @@
 </template>
 
 <script>
-import { ref, onMounted, computed } from "vue";
+import {ref, onMounted, computed, onBeforeUnmount} from "vue";
 
 export default {
   name: "BaekjoonKing",
@@ -49,7 +51,6 @@ export default {
     const show = ref(false);
     const rankingData = ref([]);
 
-    // API 호출 함수
     const fetchRankings = async () => {
       try {
         const response = await fetch("https://czportal.site/api/infos/all");
@@ -65,14 +66,12 @@ export default {
       await fetchRankings();
     });
 
-    // ratingDiff 기준 내림차순 정렬 (숫자로 변환)
     const sortedRankings = computed(() => {
       return rankingData.value.slice().sort((a, b) => {
         return Number(b.solvedCountDiff) - Number(a.solvedCountDiff);
       });
     });
 
-    // podium 순서: 기존 하드 코딩 순서(왼쪽부터 3등, 2등, 1등, 4등)
     const podiumOrder = computed(() => {
       if (sortedRankings.value.length < 4) {
         return sortedRankings.value;
@@ -85,43 +84,52 @@ export default {
       ];
     });
 
-    // podium에 사용할 클래스 배열 (순서에 맞게)
     const rankClasses = ["third", "second", "first", "fourth"];
 
     return {
       show,
       podiumOrder,
-      rankClasses
+      rankClasses,
     };
-  }
+  },
 };
 </script>
 
 <style scoped>
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&family=Noto+Sans+KR:wght@400;700&display=swap');
 
+.title{
+  margin-top: clamp(2rem, 6vh, 4rem);
+  font-size: clamp(4rem, 5.5vw, 5.5rem);
+}
+.full-title {
+  display: inline;
+}
+.short-title {
+  display: none;
+}
 .ranking-container {
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  height: 100vh;
+  min-height: 100vh;
   color: white;
   text-align: center;
   position: relative;
-  padding-bottom: 80px;
+  padding-bottom: clamp(40px, 8vh, 80px);
   font-family: 'Poppins', 'Noto Sans KR', sans-serif;
 }
 
 .subtitle {
-  font-size: 1.2rem;
+  font-size: clamp(1rem, 5.5vw, 1.5rem);
   opacity: 0.8;
-  margin-bottom: 40px;
+  margin-bottom: clamp(15px, 4vh, 30px);
 }
 
 .highlight {
   font-weight: 700;
-  font-size: 1.3rem;
+  font-size: clamp(1rem, 5.5vw, 1.5rem);
   color: #ffd700;
 }
 
@@ -129,7 +137,8 @@ export default {
   display: flex;
   justify-content: center;
   align-items: flex-end;
-  gap: 30px;
+  gap: clamp(16px, 4vw, 30px);
+  flex-wrap: wrap;
 }
 
 .rank-container {
@@ -139,8 +148,7 @@ export default {
 }
 
 .rank {
-  width: 140px;
-  height: 230px;
+  width: clamp(100px, 22vw, 140px);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -157,56 +165,53 @@ export default {
 }
 
 .rank-number {
-  font-size: 2rem;
+  font-size: clamp(1rem, 4vw, 2.5rem);
   font-weight: bold;
-  margin-bottom: 10px;
+  margin-bottom: clamp(6px, 1vh, 10px);
   color: white;
 }
 
 .user-name {
-  font-size: 1.3rem;
+  font-size: clamp(0.8rem, 3vw, 1.2rem);
   font-weight: bold;
-  margin-top: 20px;
+  margin-top: clamp(10px, 2vh, 20px);
   color: white;
 }
 
 .first {
-  height: 280px;
+  height: clamp(140px, 40vh, 250px);
   background: linear-gradient(145deg, #b8860b, #8b6914);
   box-shadow: 0 10px 30px rgba(184, 134, 11, 0.2);
 }
-
 .second {
-  height: 250px;
+  height: clamp(120px, 35vh, 220px);
   background: linear-gradient(145deg, #808080, #696969);
   box-shadow: 0 10px 30px rgba(128, 128, 128, 0.2);
 }
-
 .third {
-  height: 220px;
+  height: clamp(100px, 30vh, 190px);
   background: linear-gradient(145deg, #8b5a2b, #6f4f28);
   box-shadow: 0 10px 30px rgba(139, 90, 43, 0.2);
 }
-
 .fourth {
-  height: 190px;
+  height: clamp(80px, 25vh, 160px);
   background: linear-gradient(145deg, #4f6272, #3c4a57);
   box-shadow: 0 10px 30px rgba(79, 98, 114, 0.2);
 }
 
 .footer {
   position: absolute;
-  bottom: 20px;
+  bottom: clamp(20px, 5vh, 40px);
   width: 100%;
   display: flex;
   justify-content: center;
-  gap: 40px;
+  gap: clamp(20px, 5vw, 40px);
 }
 
 .btn {
-  width: 150px;
-  height: 50px;
-  font-size: 1.2rem;
+  width: clamp(95px, 20vw, 150px);
+  height: clamp(15px, 6vh, 50px);
+  font-size: clamp(1rem, 2.5vw, 1.2rem);
   font-weight: bold;
   color: white;
   text-decoration: none;
@@ -224,19 +229,86 @@ export default {
   box-shadow: 0 6px 20px rgba(255, 255, 255, 0.2);
 }
 
+/* 애니메이션 */
 .fade-title-enter-active {
-  transition: opacity 1s ease, transform 0.8s ease;
+  transition: opacity 0.8s ease, transform 0.6s ease;
 }
+
 .fade-title-enter-from {
   opacity: 0;
   transform: translateY(10px);
 }
 
 .fade-content-enter-active {
-  transition: opacity 1s ease 0.5s, transform 0.8s ease 0.5s;
+  transition: opacity 0.8s ease 0.3s, transform 0.6s ease 0.3s;
 }
+
 .fade-content-enter-from {
   opacity: 0;
   transform: translateY(10px);
 }
+
+@media (max-width: 768px) {
+  .ranking-container {
+    padding-inline: 16px;
+  }
+
+  .subtitle {
+    font-size: clamp(0.9rem, 4.5vw, 1.1rem);
+    line-height: 1.4;
+  }
+
+  .highlight {
+    font-size: clamp(1rem, 5vw, 1.3rem);
+  }
+
+  .podium {
+    flex-wrap: nowrap;
+    overflow-x: auto;
+    gap: clamp(10px, 4vw, 20px);
+    padding-bottom: 10px;
+    justify-content: flex-start;
+  }
+
+  .rank-container {
+    flex: 0 0 auto;
+  }
+
+  .rank {
+    width: clamp(90px, 30vw, 120px);
+  }
+
+  .first {
+    height: clamp(160px, 30vh, 200px);
+  }
+
+  .second {
+    height: clamp(140px, 26vh, 180px);
+  }
+
+  .rank-number {
+    font-size: clamp(1.2rem, 5vw, 1.6rem);
+  }
+
+  .user-name {
+    font-size: clamp(1rem, 4vw, 1.2rem);
+    margin-top: 12px;
+  }
+
+  /* 3등, 4등은 그대로 숨기기 */
+  .rank-container:nth-child(1),
+  .rank-container:nth-child(4) {
+    display: none;
+  }
+}
+
+@media(max-width: 550px){
+  .full-title {
+    display: none;
+  }
+  .short-title {
+    display: inline;
+  }
+}
 </style>
+

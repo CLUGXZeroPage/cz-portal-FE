@@ -2,7 +2,10 @@
   <div class="sign-container">
     <div class="header">
       <transition name="fade-title">
-        <h1 v-if="show" class="title">Join the BaekjoonKing</h1>
+        <h1 v-if="show" class="title">
+          <span class="full-title">JOIN THE BAEKJOONKING</span>
+          <span class="short-title">JOIN BJKING</span>
+        </h1>
       </transition>
 
       <transition name="fade-content">
@@ -101,47 +104,50 @@ export default {
 </script>
 
 <style scoped>
-/* 기존 스타일 그대로 유지 */
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap');
+.full-title {
+  display: inline;
+}
+.short-title {
+  display: none;
+}
 .sign-container {
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  height: 100vh;
+  min-height: 100vh;
   color: white;
   text-align: center;
   font-family: 'Poppins', sans-serif;
+  padding: clamp(20px, 5vw, 60px);
 }
 
 .header {
-  margin-bottom: 40px;
-}
-
-.title {
-  margin-top: 60px;
-  letter-spacing: 1px;
+  margin-bottom: clamp(20px, 5vh, 40px);
 }
 
 .subtitle {
-  font-size: 1.2rem;
+  font-size: clamp(1rem, 5.5vw, 1.4rem);
   opacity: 0.8;
-  margin-bottom: 40px;
+  margin-bottom: clamp(20px, 1vw, 40px);
+  line-height: 1.4;
 }
 
 .form-container {
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 16px;
+  gap: clamp(12px, 4vw, 16px);
   background: #1e1e1e;
-  padding: 30px;
+  padding: clamp(20px, 5vw, 30px);
   border-radius: 12px;
   box-shadow: 0 4px 12px rgba(255, 85, 125, 0.3);
-  width: 300px;
+  width: clamp(260px, 80vw, 360px);
 }
 
 .form-label {
-  font-size: 1rem;
+  font-size: clamp(0.9rem, 4vw, 1rem);
   color: #ff557d;
   text-align: left;
   width: 100%;
@@ -151,23 +157,23 @@ export default {
 
 .form-input {
   width: 100%;
-  padding: 10px;
+  padding: clamp(8px, 2vw, 12px);
   border: none;
   border-radius: 6px;
   background: #333;
   color: white;
-  font-size: 1rem;
+  font-size: clamp(0.9rem, 4vw, 1rem);
   margin-bottom: 10px;
 }
 
 .submit-btn {
   width: 100%;
-  padding: 12px;
+  padding: clamp(10px, 3vw, 14px);
   border: none;
   border-radius: 6px;
   background: linear-gradient(90deg, #ff557d, #ff6b81);
   color: white;
-  font-size: 1rem;
+  font-size: clamp(1rem, 4vw, 1.2rem);
   font-weight: 500;
   cursor: pointer;
   transition: opacity 0.3s;
@@ -177,6 +183,7 @@ export default {
   opacity: 0.8;
 }
 
+/* Transitions */
 .fade-title-enter-active {
   transition: opacity 1s ease, transform 0.8s ease;
 }
@@ -192,4 +199,20 @@ export default {
   opacity: 0;
   transform: translateY(10px);
 }
+
+@media(max-width: 768px){
+  .subtitle{
+    display: none;
+  }
+}
+
+@media(max-width: 550px){
+  .full-title {
+    display: none;
+  }
+  .short-title {
+    display: inline;
+  }
+}
 </style>
+

@@ -27,10 +27,10 @@ export default {
 
 <style scoped>
 .title {
-  font-size: 5.5vw;
+  background: linear-gradient(45deg, #1E3A8A, #2563EB, #38BDF8, #60A5FA);;
+  font-size: clamp(3rem, 5.5vw, 5.5rem);
   font-weight: 800;
   margin-bottom: 2rem;
-  background: linear-gradient(45deg, #1E3A8A, #2563EB, #38BDF8, #60A5FA);;
   -webkit-background-clip: text;
   background-clip: text;
   -webkit-text-fill-color: transparent;
