@@ -9,7 +9,7 @@
 
     <transition name="fade-content">
       <p v-if="show" class="subtitle">
-        이번 주 시상 종목 : <span class="highlight">[가장 많은 문제 해결]</span> <br /><br />
+        이번 주 시상 종목 : <span class="highlight">[가장 어려운 문제 해결]</span> <br /><br />
         <span class="highlight">Current Top 4</span>
       </p>
     </transition>
@@ -66,10 +66,42 @@ export default {
       await fetchRankings();
     });
 
+
+    //가장 어려운 문제 용 함수 2개
+    const getMaxDifficultyIndex = (diffArrayStr) => {
+      const levels = diffArrayStr.split(',').map(Number);
+      for (let i = levels.length - 1; i >= 0; i--) {
+        if (levels[i] > 0) {
+          return i; // 가장 어려운 문제의 인덱스
+        }
+      }
+      return -1; // 아무것도 안 푼 경우
+    };
+    const calculateScore = (user) => {
+      const hardestIdx = getMaxDifficultyIndex(user.solvedCountDiffByLevelArray);
+      const score = hardestIdx;
+      return {
+        ...user,
+        hardestIdx,
+        score,
+      };
+    };
+    //-----------------------------------------------------------
+
     const sortedRankings = computed(() => {
-      return rankingData.value.slice().sort((a, b) => {
+
+      //가장 어려운 문제 푼 거 정렬 반환
+      return rankingData.value
+          .map(calculateScore)
+          .sort((a, b) => {
+            return b.score - a.score;
+          });
+
+      //가장 많은 문제 푼 거 정렬
+      /*return rankingData.value.slice().sort((a, b) => {
         return Number(b.solvedCountDiff) - Number(a.solvedCountDiff);
-      });
+      });*/
+
     });
 
     const podiumOrder = computed(() => {

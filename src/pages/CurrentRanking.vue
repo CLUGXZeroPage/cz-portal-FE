@@ -16,12 +16,12 @@
             <span class="rank">#{{ index + 1 }}</span>
             <!-- 닉네임으로 표시 -->
             <span class="username">{{ user.nickname }}</span>
-            <!-- ratingDiff 값 표시 -->
-            <span class="score">{{ user.solvedCountDiff }}</span>
+            <!-- 가장 어려운 문제: score, 문제 푼 개수: solvedCountDiff -->
+            <span class="score">{{ user.score }}</span>
           </div>
           <div class="progress-bar">
             <!-- 숫자형으로 변환 후 최대값과 비교하여 프로그레스바 계산 -->
-            <div class="progress-fill" :style="{ width: (Number(user.solvedCountDiff) / maxRatingDiff * 100) + '%' }"></div>
+            <div class="progress-fill" :style="{ width: (Number(user.score) / maxRatingDiff * 100) + '%' }"></div>
           </div>
         </div>
       </div>
@@ -39,18 +39,44 @@ export default {
     const maxRatingDiff = ref(0);
     const show = ref(false);
 
+    //어려운 문제 계산 용 2개
+    const getMaxDifficultyIndex = (diffArrayStr) => {
+      const levels = diffArrayStr.split(',').map(Number);
+      for (let i = levels.length - 1; i >= 0; i--) {
+        if (levels[i] > 0) {
+          return i;
+        }
+      }
+      return -1;
+    };
+    const calculateScore = (user) => {
+      const hardestIdx = getMaxDifficultyIndex(user.solvedCountDiffByLevelArray);
+      const score = hardestIdx + 1; // ← 점수 계산 방식은 자유롭게 조정 가능
+      return {
+        ...user,
+        hardestIdx,
+        score,
+      };
+    };
+
     onMounted(async () => {
       show.value = true;
       try {
         const response = await fetch("https://czportal.site/api/infos/all");
         const data = await response.json();
         if (data.isSuccess && data.result) {
+          const processedUsers = data.result.map(calculateScore);
+          users.value = processedUsers.sort((a, b) => b.score - a.score);
+          maxRatingDiff.value = users.value.length > 0 ? users.value[0].score : 0;
+          /*
           // ratingDiff는 문자열이므로 숫자로 변환하여 내림차순 정렬
           users.value = data.result.sort(
             (a, b) => Number(b.solvedCountDiff) - Number(a.solvedCountDiff)
           ); //solvedCountDiff 문제 개수
           // 최대 ratingDiff 값을 추출 (첫번째 요소가 가장 큰 값)
-          maxRatingDiff.value = Number(users.value[0].solvedCountDiff);
+          maxRatingDiff.value = Number(users.value[0].solvedCountDiff); */
+          // 단순 점수 나오는 애들 용
+
         }
       } catch (error) {
         console.error("Error fetching data:", error);
