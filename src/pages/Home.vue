@@ -2,31 +2,34 @@
   <div class="home-container">
     <div class="content">
       <transition name="fade-title">
-        <h1 v-if="show" class="title">{{ displayTitle }}</h1>
+        <h1 v-if="show" class="title">
+          <span class="full-title">Together, we get better</span>
+          <span class="short-title">CLUG X ZeroPage</span>
+        </h1>
       </transition>
       <transition name="fade-content">
-        <p v-if="show" class="description">{{ displayDescription }}</p>
+        <p v-if="show" class="description">
+          <span class="full-title">Welcome to the new era of CLUG X ZeroPage</span>
+          <span class="short-title">Welcome!</span>
+        </p>
       </transition>
     </div>
   </div>
 </template>
 
 <script>
-import {ref, onMounted, computed} from "vue";
+import {ref, onMounted} from "vue";
 
 export default {
   name: "Home",
   setup() {
     const show = ref(false);
-    const isSmallScreen = computed(() => window.innerWidth <= 480);
-    const displayTitle = computed(() => (isSmallScreen.value ? "CLUG X ZeroPage" : "Together, we get better"));
-    const displayDescription = computed(() => (isSmallScreen.value ? "Welcome!" : "Welcome to the new era of CLUG X ZeroPage"));
 
     onMounted(() => {
       show.value = true; // 페이지가 로드되면 애니메이션 실행
     });
 
-    return {show, displayTitle, displayDescription};
+    return {show};
   },
 };
 </script>
@@ -72,8 +75,14 @@ export default {
   max-width: 800px;
   margin: 0 auto;
   line-height: 1.6;
-  opacity: 0.8;
   color: white;
+}
+
+.full-title {
+  display: inline;
+}
+.short-title {
+  display: none;
 }
 
 @media (max-width: 1024px) {
@@ -92,6 +101,12 @@ export default {
 @media (max-width: 480px) {
   .title{
     font-size: 2rem;
+  }
+  .full-title {
+    display: none;
+  }
+  .short-title {
+    display: inline;
   }
   .home-container {
     padding-top: 15%;
