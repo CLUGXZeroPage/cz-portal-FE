@@ -50,7 +50,8 @@ export default {
     const loadOMSS = async () => {
       try {
         const response = await fetch('/omss.json');
-        omss.value = await response.json();
+        const data = await response.json();
+        omss.value = data.sort((a, b) => b.id - a.id);
       } catch (error) {
         console.error('Failed to load OMS data:', error);
       }
