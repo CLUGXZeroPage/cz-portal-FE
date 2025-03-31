@@ -9,7 +9,7 @@
 
     <transition name="fade-content">
       <p v-if="show" class="subtitle">
-        이번 주 시상 종목 : <span class="highlight">[가장 어려운 문제 해결]</span> <br /><br />
+        이번 주 시상 종목 : <span class="highlight">[가장 높은 Rating 상승]</span> <br /><br />
         <span class="highlight">Current Top 4</span>
       </p>
     </transition>
@@ -91,16 +91,25 @@ export default {
     const sortedRankings = computed(() => {
 
       //가장 어려운 문제 푼 거 정렬 반환
+      /*
       return rankingData.value
           .map(calculateScore)
           .sort((a, b) => {
             return b.score - a.score;
           });
+       */
 
+      /*
       //가장 많은 문제 푼 거 정렬
-      /*return rankingData.value.slice().sort((a, b) => {
+      return rankingData.value.slice().sort((a, b) => {
         return Number(b.solvedCountDiff) - Number(a.solvedCountDiff);
-      });*/
+      });
+      */
+
+      //rating 상승 폭 정렬
+      return rankingData.value.slice().sort((a, b) => {
+        return Number(b.ratingDiff) - Number(a.ratingDiff);
+      });
 
     });
 

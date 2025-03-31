@@ -17,11 +17,11 @@
             <!-- 닉네임으로 표시 -->
             <span class="username">{{ user.nickname }}</span>
             <!-- 가장 어려운 문제: score, 문제 푼 개수: solvedCountDiff -->
-            <span class="score">{{ user.score }}</span>
+            <span class="score">{{ user.ratingDiff }}</span>
           </div>
           <div class="progress-bar">
             <!-- 숫자형으로 변환 후 최대값과 비교하여 프로그레스바 계산 -->
-            <div class="progress-fill" :style="{ width: (Number(user.score) / maxRatingDiff * 100) + '%' }"></div>
+            <div class="progress-fill" :style="{ width: (Number(user.ratingDiff) / maxRatingDiff * 100) + '%' }"></div>
           </div>
         </div>
       </div>
@@ -65,17 +65,28 @@ export default {
         const response = await fetch("https://czportal.site/api/infos/all");
         const data = await response.json();
         if (data.isSuccess && data.result) {
+          /*
+          // 어려운 문제
           const processedUsers = data.result.map(calculateScore);
           users.value = processedUsers.sort((a, b) => b.score - a.score);
           maxRatingDiff.value = users.value.length > 0 ? users.value[0].score : 0;
+          */
+
+
+          // 문제 많이 푼 거
           /*
-          // ratingDiff는 문자열이므로 숫자로 변환하여 내림차순 정렬
           users.value = data.result.sort(
             (a, b) => Number(b.solvedCountDiff) - Number(a.solvedCountDiff)
-          ); //solvedCountDiff 문제 개수
-          // 최대 ratingDiff 값을 추출 (첫번째 요소가 가장 큰 값)
-          maxRatingDiff.value = Number(users.value[0].solvedCountDiff); */
-          // 단순 점수 나오는 애들 용
+          );
+          maxRatingDiff.value = Number(users.value[0].solvedCountDiff);
+          */
+
+          // rating diff 용
+          users.value = data.result.sort(
+            (a, b) => Number(b.ratingDiff) - Number(a.ratingDiff)
+          );
+          maxRatingDiff.value = Number(users.value[0].ratingDiff);
+
 
         }
       } catch (error) {
