@@ -35,9 +35,9 @@ export default {
     const show = ref(false);
 
     // 새로운 OMS title 추가
-    const omsTitle = ref("저랑 MMA 한판 뜨실분 613호로");
-    const description = ref("데이터 분석으로 UFC 승률 예측하기");
-    const presenter = ref("이준형");
+    const omsTitle = ref("재미있게 코딩하기");
+    const description = ref("백준 활용법 및 간단한 자료구조와 알고리즘 소개");
+    const presenter = ref("김주영");
 
     onMounted(() => {
       show.value = true;
