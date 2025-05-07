@@ -1,6 +1,16 @@
 {
   "studies": [
     {
+      "id": 0,
+      "name": "KING OF ALGORITHM",
+      "currentMembers": 4,
+      "totalMembers": 4,
+      "applicationCriteria": "골드 이상의 백준 실력자",
+      "greeting": "알고리즘을 더... 더...",
+      "leader": "백범준",
+      "contact" : "마감."
+    },
+    {
       "id": 1,
       "name": "파이썬 교실 🌱",
       "currentMembers": 4,

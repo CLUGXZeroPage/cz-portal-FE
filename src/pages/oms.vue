@@ -35,9 +35,9 @@ export default {
     const show = ref(false);
 
     // 새로운 OMS title 추가
-    const omsTitle = ref("재미있게 코딩하기");
-    const description = ref("백준 활용법 및 간단한 자료구조와 알고리즘 소개");
-    const presenter = ref("김주영");
+    const omsTitle = ref("학부생으로서 공부하는 방법");
+    const description = ref("-");
+    const presenter = ref("홍혁준");
 
     onMounted(() => {
       show.value = true;
