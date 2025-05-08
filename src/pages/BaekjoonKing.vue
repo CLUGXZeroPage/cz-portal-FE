@@ -9,7 +9,7 @@
 
     <transition name="fade-content">
       <p v-if="show" class="subtitle">
-        이번 주 시상 종목 : <span class="highlight">[가장 높은 Rating 상승]</span> <br /><br />
+        이번 주 시상 종목 : <span class="highlight">[가장 많은 문제 해결]</span> <br /><br />
         <span class="highlight">Current Top 4</span>
       </p>
     </transition>
@@ -66,7 +66,7 @@ export default {
       await fetchRankings();
     });
 
-
+    /*
     //가장 어려운 문제 용 함수 2개
     const getMaxDifficultyIndex = (diffArrayStr) => {
       const levels = diffArrayStr.split(',').map(Number);
@@ -85,7 +85,7 @@ export default {
         hardestIdx,
         score,
       };
-    };
+    }; */
     //-----------------------------------------------------------
 
     const sortedRankings = computed(() => {
@@ -98,18 +98,15 @@ export default {
             return b.score - a.score;
           });
        */
-
-      /*
       //가장 많은 문제 푼 거 정렬
       return rankingData.value.slice().sort((a, b) => {
         return Number(b.solvedCountDiff) - Number(a.solvedCountDiff);
       });
-      */
-
+      /*
       //rating 상승 폭 정렬
       return rankingData.value.slice().sort((a, b) => {
         return Number(b.ratingDiff) - Number(a.ratingDiff);
-      });
+      }); */
 
     });
 
