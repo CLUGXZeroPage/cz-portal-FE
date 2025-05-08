@@ -17,11 +17,11 @@
             <!-- 닉네임으로 표시 -->
             <span class="username">{{ user.nickname }}</span>
             <!-- 가장 어려운 문제: score, 문제 푼 개수: solvedCountDiff -->
-            <span class="score">{{ user.ratingDiff }}</span>
+            <span class="score">{{ user.solvedCountDiff }}</span>
           </div>
           <div class="progress-bar">
             <!-- 숫자형으로 변환 후 최대값과 비교하여 프로그레스바 계산 -->
-            <div class="progress-fill" :style="{ width: (Number(user.ratingDiff) / maxRatingDiff * 100) + '%' }"></div>
+            <div class="progress-fill" :style="{ width: (Number(user.solvedCountDiff) / maxRatingDiff * 100) + '%' }"></div>
           </div>
         </div>
       </div>
@@ -74,19 +74,19 @@ export default {
 
 
           // 문제 많이 푼 거
-          /*
           users.value = data.result.sort(
             (a, b) => Number(b.solvedCountDiff) - Number(a.solvedCountDiff)
           );
           maxRatingDiff.value = Number(users.value[0].solvedCountDiff);
-          */
+
 
           // rating diff 용
+          /*
           users.value = data.result.sort(
             (a, b) => Number(b.ratingDiff) - Number(a.ratingDiff)
           );
           maxRatingDiff.value = Number(users.value[0].ratingDiff);
-
+          */
 
         }
       } catch (error) {
