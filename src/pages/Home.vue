@@ -3,22 +3,34 @@
     <div class="content">
       <transition name="fade-title">
         <h1 v-if="show" class="title">
-          <span class="full-title">Together, we get better</span>
-          <span class="short-title">CLUG X ZeroPage</span>
+          <span class="full-title">뭘까용~~?</span>
         </h1>
       </transition>
+
       <transition name="fade-content">
-        <p v-if="show" class="description">
-          <span class="full-title">Welcome to the new era of CLUG X ZeroPage</span>
-          <span class="short-title">Welcome!</span>
-        </p>
+        <div v-if="show" class="quiz-box">
+          <p class="question">
+            맞춰 보셈 ㅋ
+          </p>
+          <pre class="code">
+#include &lt;stdio.h&gt;
+
+int main() {
+    int a[] = {10, 20, 30, 40, 50};
+    int *p = a;
+    int result = ++*p + *(p += 2);
+    printf("%d\n", result);
+    return 0;
+}
+          </pre>
+        </div>
       </transition>
     </div>
   </div>
 </template>
 
 <script>
-import {ref, onMounted} from "vue";
+import { ref, onMounted } from "vue";
 
 export default {
   name: "Home",
@@ -26,10 +38,10 @@ export default {
     const show = ref(false);
 
     onMounted(() => {
-      show.value = true; // 페이지가 로드되면 애니메이션 실행
+      show.value = true;
     });
 
-    return {show};
+    return { show };
   },
 };
 </script>
@@ -38,16 +50,13 @@ export default {
 .fade-title-enter-active {
   transition: opacity 0.8s ease, transform 0.6s ease;
 }
-
 .fade-title-enter-from {
   opacity: 0;
   transform: translateY(10px);
 }
-
 .fade-content-enter-active {
   transition: opacity 0.8s ease 0.3s, transform 0.6s ease 0.3s;
 }
-
 .fade-content-enter-from {
   opacity: 0;
   transform: translateY(10px);
@@ -61,7 +70,6 @@ export default {
   overflow: hidden;
   padding: 5% 5% 0;
 }
-
 .content {
   max-width: 1400px;
   width: 100%;
@@ -70,36 +78,43 @@ export default {
   z-index: 1;
 }
 
-.description {
-  font-size: clamp(1rem, 2.5vw, 2rem);
-  max-width: 800px;
-  margin: 0 auto;
-  line-height: 1.6;
+.quiz-box {
+  background: rgba(255, 255, 255, 0.05);
+  padding: 2rem;
+  border-radius: 1rem;
+  margin-top: 2rem;
   color: white;
 }
 
-.full-title {
-  display: inline;
-}
-.short-title {
-  display: none;
-}
-
-@media (max-width: 1024px) {
-
-  .description {
-    font-size: 1.2rem;
-  }
+.question {
+  font-size: 1.5rem;
+  margin-bottom: 1rem;
+  font-weight: bold;
 }
 
+.code {
+  background-color: rgba(255, 255, 255, 0.1);
+  padding: 1rem;
+  border-radius: 0.5rem;
+  text-align: left;
+  white-space: pre-wrap;
+  margin-bottom: 1.5rem;
+  font-family: monospace;
+  font-size: 1rem;
+}
+
+/* 반응형 */
 @media (max-width: 768px) {
   .home-container {
     padding-top: 10%;
   }
+  .question {
+    font-size: 1.2rem;
+  }
 }
 
 @media (max-width: 480px) {
-  .title{
+  .title {
     font-size: 2rem;
   }
   .full-title {
@@ -111,9 +126,11 @@ export default {
   .home-container {
     padding-top: 15%;
   }
-
   .description {
     font-size: 1rem;
+  }
+  .code {
+    font-size: 0.85rem;
   }
 }
 </style>
