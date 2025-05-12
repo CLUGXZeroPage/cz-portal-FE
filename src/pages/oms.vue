@@ -35,9 +35,9 @@ export default {
     const show = ref(false);
 
     // 새로운 OMS title 추가
-    const omsTitle = ref("학부생으로서 공부하는 방법");
-    const description = ref("-");
-    const presenter = ref("홍혁준");
+    const omsTitle = ref("대화주제 복사버그 찾았다 공유한다");
+    const description = ref("CS 분야 최신 소식은 어디에 있는가");
+    const presenter = ref("김도엽");
 
     onMounted(() => {
       show.value = true;
