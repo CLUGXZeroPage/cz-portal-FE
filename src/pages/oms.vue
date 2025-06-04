@@ -35,9 +35,9 @@ export default {
     const show = ref(false);
 
     // 새로운 OMS title 추가
-    const omsTitle = ref("학부생으로서 공부하는 방법");
-    const description = ref("-");
-    const presenter = ref("홍혁준");
+    const omsTitle = ref("넌 무슨 타입 트레이너야?");
+    const description = ref("포켓몬 능력치 클러스터링으로 알아보는 전투 스타일");
+    const presenter = ref("서유진");
 
     onMounted(() => {
       show.value = true;
