@@ -3,27 +3,8 @@
     <div class="content">
       <transition name="fade-title">
         <h1 v-if="show" class="title">
-          <span class="full-title">뭘까용~~?</span>
+          <span class="full-title">CLUG X ZeroPage</span>
         </h1>
-      </transition>
-
-      <transition name="fade-content">
-        <div v-if="show" class="quiz-box">
-          <p class="question">
-            맞춰 보셈 ㅋ
-          </p>
-          <pre class="code">
-#include &lt;stdio.h&gt;
-
-int main() {
-    int a[] = {10, 20, 30, 40, 50};
-    int *p = a;
-    int result = ++*p + *(p += 2);
-    printf("%d\n", result);
-    return 0;
-}
-          </pre>
-        </div>
       </transition>
     </div>
   </div>
@@ -118,10 +99,10 @@ export default {
     font-size: 2rem;
   }
   .full-title {
-    display: none;
+    display: inline;
   }
   .short-title {
-    display: inline;
+    display: none;
   }
   .home-container {
     padding-top: 15%;
